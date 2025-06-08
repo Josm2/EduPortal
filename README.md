@@ -20,7 +20,6 @@ Teachers can:
 
 # File Structure and Purpose
 EduPortal/
-│
 ├── .replit                # Replit environment configuration
 ├── LICENSE                # Open-source license file
 ├── README.md              # Project overview and setup instructions
