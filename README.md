@@ -19,19 +19,20 @@ Teachers can:
 | **Python (Flask/uvicorn)** | Optional backend utilities or Replit template requirements                  |
 
 # File Structure and Purpose
-EduPortal/
-├── .replit                # Replit environment configuration
-├── LICENSE                # Open-source license file
-├── README.md              # Project overview and setup instructions
-├── app.py                 # (Optional) Python backend (Flask or similar)
-├── main.py                # (Optional) Main Python entry point
-├── pyproject.toml         # Python project dependencies
-├── uv.lock                # Replit dependency lock file
-│
-├── index.html             # Main HTML file (Login + Dashboard)
-├── style.css              # Modern CSS theme
-├── script.js              # Main JavaScript logic
-└── firebase-config.js     # Firebase config (legacy version)
+EduPortal
+* .replit: Replit environment configuration
+* LICENSE: Open-source license file
+* README.md: Project overview and setup instructions
+* app.py: (Optional) Python backend (Flask or similar)
+* main.py: (Optional) Main Python entry point
+* pyproject.toml: Python project dependencies
+* uv.lock: Replit dependency lock file
+
+* index.html: Main HTML file (Login + Dashboard)
+* style.css: Modern CSS theme
+* script.js: Main JavaScript logic
+* firebase-config.js: Firebase config (legacy version)
+
 
 # Firebase Integration
 Firebase was used for:
