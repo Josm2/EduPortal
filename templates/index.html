@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPortal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Login Section -->
+        <div id="loginSection" class="section active">
+            <div class="login-container">
+                <div class="login-header">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h1>EduPortal</h1>
+                    <p>Please sign in to access your dashboard</p>
+                </div>
+                
+                <div class="role-selection">
+                    <h3>Select your role:</h3>
+                    <div class="role-buttons">
+                        <button id="studentRole" class="role-btn" data-role="student">
+                            <i class="fas fa-user-graduate"></i>
+                            <span>Student</span>
+                        </button>
+                        <button id="teacherRole" class="role-btn" data-role="teacher">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span>Teacher</span>
+                        </button>
+                    </div>
+                </div>
+
+                <form id="loginForm" class="login-form">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    
+                    <div class="sample-account">
+                        <p>Use this sample account: <strong>sampleemail@gmail.com</strong> <strong>samplepassword123</strong></p>
+                    </div>
+                    
+                    <button type="submit" id="loginBtn" class="login-btn" disabled>
+                        <span class="btn-text">Sign In</span>
+                        <span class="loading-spinner" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </span>
+                    </button>
+                </form>
+                
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Student Dashboard -->
+        <div id="studentDashboard" class="section dashboard">
+            <div class="dashboard-header">
+                <div class="header-content">
+                    <h1><i class="fas fa-user-graduate"></i> Student Dashboard</h1>
+                    <div class="user-info">
+                        <span id="studentName">Loading...</span>
+                        <button id="studentLogout" class="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-content">
+                <div class="dashboard-grid">
+                    <!-- Grades Section -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-chart-line"></i> My Grades</h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="studentGrades" class="grades-container">
+                                <div class="loading-state">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    <p>Loading grades...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attendance Section -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-calendar-check"></i> My Attendance</h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="studentAttendance" class="attendance-container">
+                                <div class="loading-state">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    <p>Loading attendance...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feedback Section -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-comments"></i> Feedback</h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="studentFeedback" class="feedback-container">
+                                <div class="loading-state">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    <p>Loading feedback...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Teacher Dashboard -->
+        <div id="teacherDashboard" class="section dashboard">
+            <div class="dashboard-header">
+                <div class="header-content">
+                    <h1><i class="fas fa-chalkboard-teacher"></i> Teacher Dashboard</h1>
+                    <div class="user-info">
+                        <span id="teacherName">Loading...</span>
+                        <button id="teacherLogout" class="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-content">
+                <div class="dashboard-grid">
+                    <!-- Student Management Section -->
+                    <div class="dashboard-card full-width">
+                        <div class="card-header">
+                            <h3><i class="fas fa-users"></i> Student Grade Management</h3>
+                            <button id="addGradeBtn" class="add-btn">
+                                <i class="fas fa-plus"></i> Add Grade
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <div id="studentGradesList" class="grades-list">
+                                <div class="loading-state">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    <p>Loading student grades...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attendance Tracking Section -->
+                    <div class="dashboard-card full-width">
+                        <div class="card-header">
+                            <h3><i class="fas fa-clipboard-list"></i> Attendance Tracking</h3>
+                            <button id="markAttendanceBtn" class="add-btn">
+                                <i class="fas fa-check"></i> Mark Attendance
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <div id="attendanceList" class="attendance-list">
+                                <div class="loading-state">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    <p>Loading attendance records...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grade Modal -->
+    <div id="gradeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="gradeModalTitle">Add Grade</h3>
+                <button class="close-btn" id="closeGradeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="gradeForm">
+                <div class="form-group">
+                    <label for="studentSelect">Student</label>
+                    <select id="studentSelect" required>
+                        <option value="">Select a student</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="grade">Grade</label>
+                    <input type="number" id="grade" min="0" max="100" required>
+                </div>
+                <div class="form-group">
+                    <label for="gradeDate">Date</label>
+                    <input type="date" id="gradeDate" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="cancelGrade" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="save-btn">Save Grade</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Attendance Modal -->
+    <div id="attendanceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Mark Attendance</h3>
+                <button class="close-btn" id="closeAttendanceModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="attendanceForm">
+                <div class="form-group">
+                    <label for="attendanceDate">Date</label>
+                    <input type="date" id="attendanceDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="attendanceSubject">Subject</label>
+                    <input type="text" id="attendanceSubject" required>
+                </div>
+                <div id="studentAttendanceList" class="student-attendance-list">
+                    <!-- Students will be loaded here -->
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="cancelAttendance" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="save-btn">Save Attendance</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase Config -->
+    <script src="{{ url_for('static', filename='firebase-config.js') }}"></script>
+    
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getAuth } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Make Firebase available globally
+        window.firebaseApp = app;
+        window.firebaseAuth = auth;
+        window.firebaseDb = db;
+    </script>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
