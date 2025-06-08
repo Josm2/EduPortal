@@ -67,3 +67,9 @@ Configuration was initialized in firebase-config.js, and functionality handled v
 | **Login Section** (`index.html`) | Role selection + email/password login                               |
 | **Student Dashboard**            | Displays grades, attendance, feedback (read-only)                   |
 | **Teacher Dashboard**            | Displays student records; allows grade/attendance input and editing |
+
+# Future Enhancements
+* Deploy system on Firebase Hosting or Vercel.
+* Add password reset and email verification.
+* Implement advanced analytics and PDF report generation.
+* Create separate HTML files for login and dashboard for better scalability.
