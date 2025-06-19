@@ -1,6 +1,8 @@
 # EduPortal
 **EduPortal** is a web-based Student and Teacher Performance Monitoring System. It supports authentication, role-based dashboards, and basic performance monitoring functions.
 
+# NOTE: Put the API Key inside the "" for some reason when importing this repository to the replit it puts it outside.
+
 Students can:
 * View their grades, attendance, and feedback.
 
